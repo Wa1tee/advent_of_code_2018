@@ -3,6 +3,7 @@
 # Day 2
 def main():
     inputs = []
+    checkedinputs = []
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     doubles = 0
     triples = 0
@@ -10,7 +11,8 @@ def main():
     double = False
     triple = False
 
-    
+    inputlength = 26
+
     while(True):
 
         s = input('> ')
@@ -18,6 +20,7 @@ def main():
             inputs.append(s)
             amount = 0
             counts = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
             for i in s:
                 for x in range(0,26):
                     if alphabet[x] == i:
@@ -46,6 +49,29 @@ def main():
     print("Triples: ", triples)
     print("Checksum is ", checksum)
 
+    for i in range(0, len(inputs)):
+        
+        for j in range(0, len(inputs)) :
+            print("i = ", i)
+            print("j = ", j)
+
+            for k in range(0, inputlength-1) :
+                line1 = inputs[i]
+                line2 = inputs[j]
+                line1 = line1[:k] + " " + line1[k+1:] 
+                line2 = line2[:k] + " " + line2[k+1:] 
+                if line1 == line2:
+                    print("Line 1: ", inputs[i])
+                    print("Line 2: ", inputs[j])
+                    print("new   : ", line1)
+                    print(" ")
+                    
+                    checkedinputs.append(line1)
+    if len(checkedinputs) > 0:
+        
+        print("ID found: ", checkedinputs[0])
+    else:
+        print("ID not found.")
     return 0
 
 main()
